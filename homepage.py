@@ -934,7 +934,7 @@ def ResumeScreenPage():
                 If there is an error, point it out.
                 Do not provide the answer to the question, ever, at all.
                 Follow-up the introduction by asking "Who is your favourite professor at your university and why?"
-                Don't ask follow up questions about the professor.
+                Begin the technical interview after the introduction and the follow-up question.
                 
                 Current Conversation:
                 {history}
@@ -1166,7 +1166,7 @@ def BehavioralScreenPage():
                                 If there is an error, point it out.
                                 Do not provide the answer to the question, ever, at all.
                                 Follow-up the introduction by asking "Who is your favourite professor at your university and why?"
-                                Don't ask follow up questions about the professor.
+                                Begin the technical interview after the introduction and the follow-up question.
 
                                 Current Conversation:
                                 {history}
@@ -1380,7 +1380,7 @@ def TechnicalScreenPage():
                                 If there is an error, point it out.
                                 Do not provide the answer to the question, ever, at all.
                                 Follow-up the introduction by asking "Who is your favourite professor at your university and why?"
-                                 Don't ask follow up questions about the professor.
+                                Begin the technical interview after the introduction and the follow-up question.
 
                                 Current Conversation:
                                 {history}
