@@ -1500,7 +1500,7 @@ def HomePage():
         st.markdown('AI Interviewer')
         st.markdown(""" 
         #### About Us:
-        [Codebase](https://github.com/arnavailable/ai-interviewer)
+        [Codebase](https://github.com/arnavailable/llm-interview)
         
         #### Support:
         [Arnav Garg](mailto:arnav.garg.2024@anderson.ucla.edu")
@@ -1513,9 +1513,15 @@ def HomePage():
 
         #### Powered by
 
-        [Anthropic](https://www.anthropic.com/)
+        [RAG](https://aws.amazon.com/what-is/retrieval-augmented-generation/)
+                    
+        [FAISS](https://github.com/facebookresearch/faiss)
 
+        [OpenAI](https://www.openai.com) 
+                    
         [Langchain](https://www.langchain.com/)
+
+        [Few Shot Prompting](https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1244/final-projects/JamesJMoriceSamuelEdwardKwok.pdf)
         
         [Streamlit](https://streamlit.io/)
 
