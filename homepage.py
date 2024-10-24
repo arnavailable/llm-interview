@@ -34,8 +34,6 @@ class templates:
     da_template = """
         I want you to act as an interviewer. Remember, you are the interviewer, not the candidate. 
 
-        Introduce yourself to the candidate, and ask for their introduction along with their university and major. Then ask a follow-up question "Who is the best professor at your university?" before starting the interview.
-
         Let’s think step by step.
 
         Based on the Resume, 
@@ -130,8 +128,6 @@ class templates:
     swe_template = """
         I want you to act as an interviewer. Remember, you are the interviewer, not the candidate.
 
-        Introduce yourself to the candidate, and ask for their introduction along with their university and major. Then ask a follow-up question "Who is the best professor at your university?" before starting the interview.
-
         Let’s think step by step.
 
         Based on the Resume, 
@@ -224,8 +220,6 @@ class templates:
 
     marketing_template = """
         I want you to act as an interviewer. Remember, you are the interviewer, not the candidate.
-
-        Introduce yourself to the candidate, and ask for their introduction along with their university and major. Then ask a follow-up question "Who is the best professor at your university?" before starting the interview.
 
         Let’s think step by step.
 
@@ -770,7 +764,7 @@ def initialize_session_state(template = None, position = None):
     st.session_state.token_count = 0
     #if "guideline" not in st.session_state:
     llm = ChatOpenAI(
-            model_name="gpt-3.5-turbo",
+            model_name="gpt-4o-mini",
             temperature=0.6, )
     st.session_state.guideline = RetrievalQA.from_chain_type(
             llm=llm,
@@ -780,7 +774,7 @@ def initialize_session_state(template = None, position = None):
     # llm chain and memory
     #if "screen" not in st.session_state:
     llm = ChatOpenAI(
-            model_name="gpt-3.5-turbo",
+            model_name="gpt-4o-mini",
             temperature=0.8, )
     PROMPT = PromptTemplate(
             input_variables=["history", "input"],
@@ -792,7 +786,7 @@ def initialize_session_state(template = None, position = None):
                             Do not ask the same question.
                             Do not repeat the question.
                             Do ask follow-up questions if necessary. 
-                            You name is AIInterviewer.
+                            You name is LLMInterviewer.
                             I want you to only reply as an interviewer.
                             Do not write all the conversation at once.
                             If there is an error, point it out.
@@ -806,7 +800,7 @@ def initialize_session_state(template = None, position = None):
                                                     memory=st.session_state.memory)
     #if "feedback" not in st.session_state:
     llm = ChatOpenAI(
-        model_name = "gpt-3.5-turbo",
+        model_name = "gpt-4o-mini",
         temperature = 0.5,)
     st.session_state.feedback = ConversationChain(
             prompt=PromptTemplate(input_variables = ["history", "input"], template = templates.feedback_template),
@@ -909,7 +903,7 @@ def ResumeScreenPage():
         # guideline for resume screen
         if "resume_guideline" not in st.session_state:
             llm = ChatOpenAI(
-            model_name = "gpt-3.5-turbo",
+            model_name = "gpt-4o-mini",
             temperature = 0.5,)
 
             st.session_state.resume_guideline = RetrievalQA.from_chain_type(
@@ -919,7 +913,7 @@ def ResumeScreenPage():
         # llm chain for resume screen
         if "resume_screen" not in st.session_state:
             llm = ChatOpenAI(
-                model_name="gpt-3.5-turbo",
+                model_name="gpt-4o-mini",
                 temperature=0.7, )
 
             PROMPT = PromptTemplate(
@@ -933,10 +927,13 @@ def ResumeScreenPage():
                 Do not ask the same question.
                 Do not repeat the question.
                 Candidate has no assess to the guideline.
-                You name is GPTInterviewer.
+                You name is LLMInterviewer.
                 I want you to only reply as an interviewer.
                 Do not write all the conversation at once.
                 Candiate has no assess to the guideline.
+                If there is an error, point it out.
+                Do not provide the answer to the question, ever, at all.
+                Follow-up the introduction by asking "Who is your favourite professor at your university and why?"
                 
                 Current Conversation:
                 {history}
@@ -947,7 +944,7 @@ def ResumeScreenPage():
         # llm chain for generating feedback
         if "resume_feedback" not in st.session_state:
             llm = ChatOpenAI(
-                model_name="gpt-3.5-turbo",
+                model_name="gpt-4o-mini",
                 temperature=0.5,)
             st.session_state.resume_feedback = ConversationChain(
                 prompt=PromptTemplate(input_variables=["history","input"], template=templates.feedback_template),
@@ -1141,7 +1138,7 @@ def BehavioralScreenPage():
             st.session_state.memory = ConversationBufferMemory()
         if "guideline" not in st.session_state:
             llm = ChatOpenAI(
-                model_name="gpt-3.5-turbo",
+                model_name="gpt-4o-mini",
                 temperature=0.8, )
             st.session_state.guideline = RetrievalQA.from_chain_type(
                 llm=llm,
@@ -1151,7 +1148,7 @@ def BehavioralScreenPage():
         # llm chain and memory
         if "conversation" not in st.session_state:
             llm = ChatOpenAI(
-            model_name = "gpt-3.5-turbo",
+            model_name = "gpt-4o-mini",
             temperature = 0.8,)
             PROMPT = PromptTemplate(
                 input_variables=["history", "input"],
@@ -1162,10 +1159,12 @@ def BehavioralScreenPage():
                                 Do not ask the same question.
                                 Do not repeat the question.
                                 Do ask follow-up questions if necessary. 
-                                You name is GPTInterviewer.
+                                You name is LLMInterviewer.
                                 I want you to only reply as an interviewer.
                                 Do not write all the conversation at once.
                                 If there is an error, point it out.
+                                Do not provide the answer to the question, ever, at all.
+                                Follow-up the introduction by asking "Who is your favourite professor at your university and why?"
 
                                 Current Conversation:
                                 {history}
@@ -1176,7 +1175,7 @@ def BehavioralScreenPage():
                                                         memory=st.session_state.memory)
         if "feedback" not in st.session_state:
             llm = ChatOpenAI(
-            model_name = "gpt-3.5-turbo",
+            model_name = "gpt-4o-mini",
             temperature = 0.5,)
             st.session_state.feedback = ConversationChain(
                 prompt=PromptTemplate(input_variables = ["history", "input"], template = templates.feedback_template),
@@ -1347,13 +1346,13 @@ def TechnicalScreenPage():
             st.session_state.jd_history = []
             st.session_state.jd_history.append(Message("ai",
                                                     "Hello, Welcome to the interview. I am your interviewer today. I will ask you professional questions regarding the job description you submitted."
-                                                    "Please start by introducting a little bit about yourself. Note: The maximum length of your answer is 4097 tokens!"))
+                                                    "Please start by introducting a little bit about yourself, your university and major. Note: The maximum length of your answer is 4097 tokens!"))
         # token count
         if "token_count" not in st.session_state:
             st.session_state.token_count = 0
         if "jd_guideline" not in st.session_state:
             llm = ChatOpenAI(
-            model_name = "gpt-3.5-turbo",
+            model_name = "gpt-4o-mini",
             temperature = 0.8,)
             st.session_state.jd_guideline = RetrievalQA.from_chain_type(
                 llm=llm,
@@ -1362,21 +1361,23 @@ def TechnicalScreenPage():
         # llm chain and memory
         if "jd_screen" not in st.session_state:
             llm = ChatOpenAI(
-                model_name="gpt-3.5-turbo",
+                model_name="gpt-4o-mini",
                 temperature=0.8, )
             PROMPT = PromptTemplate(
                 input_variables=["history", "input"],
                 template="""I want you to act as an interviewer strictly following the guideline in the current conversation.
                                 Candidate has no idea what the guideline is.
-                                Ask me questions and wait for my answers. Do not write explanations.
+                                Ask the candidate questions and wait for their answers. Do not write explanations.
                                 Ask question like a real person, only one question at a time.
                                 Do not ask the same question.
                                 Do not repeat the question.
                                 Do ask follow-up questions if necessary. 
-                                You name is GPTInterviewer.
+                                You name is LLMInterviewer.
                                 I want you to only reply as an interviewer.
                                 Do not write all the conversation at once.
                                 If there is an error, point it out.
+                                Do not provide the answer to the question, ever, at all.
+                                Follow-up the introduction by asking "Who is your favourite professor at your university and why?"
 
                                 Current Conversation:
                                 {history}
@@ -1388,7 +1389,7 @@ def TechnicalScreenPage():
                                                             memory=st.session_state.jd_memory)
         if 'jd_feedback' not in st.session_state:
             llm = ChatOpenAI(
-                model_name="gpt-3.5-turbo",
+                model_name="gpt-4o-mini",
                 temperature=0.8, )
             st.session_state.jd_feedback = ConversationChain(
                 prompt=PromptTemplate(input_variables=["history", "input"], template=templates.feedback_template),
