@@ -790,6 +790,9 @@ def initialize_session_state(template = None, position = None):
                             I want you to only reply as an interviewer.
                             Do not write all the conversation at once.
                             If there is an error, point it out.
+                            Do not provide the answer to the question, ever, at all.
+                            Follow-up the introduction by asking "Who is your favourite professor at your university and why?"
+                            Begin the technical interview right after the introduction and the follow-up question.
 
                             Current Conversation:
                             {history}
@@ -934,7 +937,7 @@ def ResumeScreenPage():
                 If there is an error, point it out.
                 Do not provide the answer to the question, ever, at all.
                 Follow-up the introduction by asking "Who is your favourite professor at your university and why?"
-                Begin the technical interview after the introduction and the follow-up question.
+                Begin the technical interview right after the introduction and the follow-up question.
                 
                 Current Conversation:
                 {history}
