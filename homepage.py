@@ -602,8 +602,8 @@ def synthesize_speech(text, service):
         import boto3
         
         Session = boto3.Session(
-        aws_access_key_id = "AKIA5FTZCRWWE7V4QPG2",
-        aws_secret_access_key = "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",
+        aws_access_key_id = "xxx",
+        aws_secret_access_key = "xxx",
         region_name = "us-east-1")
 
         Polly = Session.client("polly")
