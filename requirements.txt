@@ -6,7 +6,7 @@ openai
 wave
 streamlit==1.39.0
 tiktoken
-nltk
+nltk==3.5
 audio_recorder_streamlit
 streamlit-option-menu
 streamlit-lottie
@@ -17,5 +17,7 @@ python-dotenv
 streamlit_extras
 assemblyai
 streamlit_lottie
+pandas
+numpy
 #aws
 #azure-cognitiveservices-speech
