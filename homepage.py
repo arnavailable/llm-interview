@@ -1,4 +1,3 @@
-pip install -r requirements.txt
 ########################################################################################
 # Prompt Templates
 
@@ -654,7 +653,7 @@ def synthesize_speech(text, service):
     elif service == "openai":
         from openai import OpenAI
         from dotenv import load_dotenv
-        OpenAI.api_key = os.getenv("OPENAI_API_KEY")
+        OpenAI.api_key = st.secrets["OPENAI_API_KEY"]
 
         load_dotenv()
 
@@ -678,8 +677,8 @@ from dotenv import load_dotenv
 load_dotenv()
 import wave
 
-OpenAI.api_key = os.getenv("OPENAI_API_KEY")
-aai.settings.api_key = os.getenv("ASSEMBLYAI_API_KEY")
+OpenAI.api_key = st.secrets["OPENAI_API_KEY"]
+aai.settings.api_key = st.secrets["ASSEMBLY_API_KEY"]
 
 class Config:
     channels = 2
@@ -837,7 +836,7 @@ def ResumeScreenPage():
     import os
     from dotenv import load_dotenv
     load_dotenv()
-    OpenAI.api_key = os.getenv("OPENAI_API_KEY")
+    OpenAI.api_key = st.secrets["OPENAI_API_KEY"]
     nltk.download('punkt')
 
     def load_lottiefile(filepath: str):
@@ -1057,7 +1056,7 @@ def BehavioralScreenPage():
     import os
     from dotenv import load_dotenv
     load_dotenv()
-    OpenAI.api_key = os.getenv("OPENAI_API_KEY")
+    OpenAI.api_key = st.secrets["OPENAI_API_KEY"]
     nltk.download('punkt')
 
     def load_lottiefile(filepath: str):
@@ -1296,7 +1295,7 @@ def TechnicalScreenPage():
     import os
     from dotenv import load_dotenv
     load_dotenv()
-    OpenAI.api_key = os.getenv("OPENAI_API_KEY")
+    OpenAI.api_key = st.secrets["OPENAI_API_KEY"]
     nltk.download('punkt')
 
     # Loads the "Welcome" animation
